@@ -1,11 +1,15 @@
 class ProductsController < ApplicationController
-  def products_method
+  def index
     @products = Product.all
-    render "products.html.erb"
+    render "index.html.erb"
   end
 
-  def unicorn_tears_method
-    @unicorn_tears = Product.find_by(id: 1)
-    render "unicorn_tears.html.erb"
+  def show
+    @product = Product.find_by(name: params["name"])
+    @name = @product.name
+    @price = @product.price
+    @description = @product.description
+    @image = @product.image
+    render "show.html.erb"
   end
 end

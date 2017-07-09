@@ -1,0 +1,9 @@
+<h1>Mystical Products</h1>
+<% @products.each do |product| %>
+<h2><a href="/products/<%= product.name %>"><%= product.name %></a></h2>
+<p>$<%= product.price %></p>
+<p><%= product.description %></p>
+<a href="/products/<%= product.name %>"><img id="prod_main_img" src="<%= product.image%>"></a>
+<br>
+<br>
+<% end %>
