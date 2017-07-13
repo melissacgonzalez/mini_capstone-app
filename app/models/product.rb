@@ -1,25 +1,25 @@
 class Product < ApplicationRecord
   def sale_method
     if price < 2
-      message = "Discount Item!"
+      return "Discount Item!"
     else
-      message = "Everyday Value!"
+      return "Everyday Value!"
     end
   end
 
   def discounted?
     if sale_method == "Discount Item!"
-      @color = "red"
+      return "discount-item"
     else
-      @color = "default"
+      return ""
     end
   end
 
   def tax
-    price * 0.09 
+    return price * 0.09 
   end
 
   def total
-    price + tax
+    return price + tax
   end
 end

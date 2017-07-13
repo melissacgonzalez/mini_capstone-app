@@ -1,35 +1,44 @@
 <div class="well show-well">
   <h1>Edit an Existing Product</h1>
-  <img class="prod_main_img" src="<%= @product.image%>">
-  <%= form_tag "/products/#{@product.id}", method: :patch do %>
-    <div class="form-group">
-      <label>Product Name: </label>
-      <input type="text" name="name" class="form-control" placeholder="Name" value="<%= @product.name%>">
-    </div>
-    <div class="form-group">
-      <label>Link to Image: </label>
-      <input type="url" name="image" class="form-control" placeholder="Image URL"  value="<%= @product.image%>">
-    </div>
-    <div class="form-group">
-      <label>Price: </label>
-      <input type="text" name="price" class="form-control" placeholder="Price" value="<%= @product.price%>">
-    </div>
-    <div class="form-group">
-      <label>Description: </label> 
-      <input type="text" name="description" class="form-control" placeholder="Description" value="<%= @product.description%>">
-    </div>
-    <div class="form-group">
-      <!-- Update Button -->
-      <button type="submit" class="btn btn-primary">Update Product!</button> 
+  <div class="row">
+    <div class="col-md-6">
+      <p>&nbsp</p>
+      <%= form_tag "/products/#{@product.id}", method: :patch do %>
+        <div class="form-group">
+          <label>Product Name: </label>
+          <input type="text" name="name" class="form-control" placeholder="Name" value="<%= @product.name%>">
+        </div>
+        <div class="form-group">
+          <label>Link to Image: </label>
+          <input type="url" name="image" class="form-control" placeholder="Image URL"  value="<%= @product.image%>">
+        </div>
+        <div class="form-group">
+          <label>Price: </label>
+          <input type="text" name="price" class="form-control" placeholder="Price" value="<%= @product.price%>">
+        </div>
+        <div class="form-group">
+          <label>Description: </label> 
+          <input type="text" name="description" class="form-control" placeholder="Description" value="<%= @product.description%>">
+        </div>
+        <div class="form-group">
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">
-      Delete Product</button> 
-      
-      <!-- Home Button -->
-      <a href="/products" class="btn btn-default" role="button">Cancel</a>
+          <!-- Update Button -->
+          <button type="submit" class="btn btn-primary btn-md">Update Product!</button> 
+
+          <!-- Home Button -->
+          <a href="/products" class="btn btn-default btn-md" role="button">Cancel</a>
+        </div>
+
+        <div class="form-group">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+          Delete Product</button> 
+
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="col-md-6"><img class="prod_main_img" src="<%= @product.image%>"></div>
+  </div>
 </div>
 
 
@@ -46,6 +55,7 @@
       <div class="modal-body">
         This will permanently delete this product!  This is not reversible!
       </div>
+
       <div class="modal-footer">
         <%= form_tag "/products/#{@product.id}", method: "delete" do %>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
