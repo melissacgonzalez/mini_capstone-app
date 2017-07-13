@@ -2,10 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#prod_main_img {
-  width: 400px;
+body {
+  background-image: url('symphony.png');
+  padding-top: 70px;
+  font-family: Optima,Segoe,"Segoe UI",Candara,Calibri,Arial,sans-serif;
 }
 
-#prod_img {
-  width:600px;
+.navbar-brand {
+  font-family: 'Cookie', cursive;
+  font-size: 3em;
 }
+
+
+.well img {
+  width: 100%;
+}
+
+.show-well img {
+  width: 75%;
+  text-align: center;
+}
+
+.well {
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+.prod_img {
+  width:500px;
+}
+

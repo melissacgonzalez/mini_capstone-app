@@ -1,5 +1,11 @@
-<h1><%= @product.name %></h1>
-<p>$<%= @product.price %></p>
-<p><%= @product.description %></p>
-<img id="prod_img" src="<%= @product.image%>">
-<p><a href="/products">All Products</a></p>
+<div class="well show-well">
+  <h1><%= @product.name %></h1>
+  <h3>$<%= @product.price %></h3>
+  <h4><%= @product.description %></h4>
+
+  <img src="<%= @product.image%>">
+  <p>&nbsp</p>
+  <p> <a href="/products" class="btn btn-primary  btn-lg" role="button">All Products</a></p>
+  <p><a href="/products/<%= @product.id %>/edit" class="btn btn-default" role="button">Edit Product</a>
+  </p>
+</div>
