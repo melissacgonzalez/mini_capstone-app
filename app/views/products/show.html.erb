@@ -1,7 +1,9 @@
 <div class="well show-well">
   <h1><%= @product.name %></h1>
-  <h3>$<%= @product.price %></h3>
-  <h4><%= @product.description %></h4>
+  <h3><%= @product.description %></h3>
+  <h4><%= @product.sale_method %> </h4>  
+  <h4>Price: <%= number_to_currency(@product.price) %></h4>
+  <h4>Tax: <%= number_to_currency(@product.tax) %>  &nbsp&nbsp  Total: <%= number_to_currency(@product.total) %></h4>
 
   <img src="<%= @product.image%>">
   <p>&nbsp</p>
