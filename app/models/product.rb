@@ -22,4 +22,11 @@ class Product < ApplicationRecord
   def total
     return price + tax
   end
+
+  def in_stock?
+    if self.quantity == nil
+      self.quantity = 0
+    end
+    return quantity > 0
+  end
 end
