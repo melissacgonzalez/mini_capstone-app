@@ -4,7 +4,12 @@ class ProductsController < ApplicationController
     sort_order = params[:sort_order]
     discounted = params[:discounted]
 
-    if discounted
+    search = params[:search_input]
+    
+    if search
+      @products = Product.where("name ILIKE ? OR description ILIKE ?", 
+      "%#{search}%", "%#{search}%")
+    elsif discounted
       @products = Product.where("cast(price as text) LIKE ?", "%.97")
     else
       @products = Product.all
@@ -67,10 +72,4 @@ class ProductsController < ApplicationController
     redirect_to "/products"
   end
 
-  def search
-    input = params[:search_input]
-    @products = Product.where("lower(name) LIKE ? OR lower(description) LIKE ?", 
-      "%#{input.downcase}%", "%#{input.downcase}%")
-    render "index.html.erb"
-  end
 end
