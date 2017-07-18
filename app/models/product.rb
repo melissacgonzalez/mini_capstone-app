@@ -1,18 +1,6 @@
 class Product < ApplicationRecord
-  def sale_method
-    if price < 2
-      return "Discount Item!"
-    else
-      return "Everyday Value!"
-    end
-  end
-
   def discounted?
-    if sale_method == "Discount Item!"
-      return "discount-item"
-    else
-      return ""
-    end
+    price.to_s.end_with?(".97")
   end
 
   def tax

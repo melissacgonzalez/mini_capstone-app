@@ -2,14 +2,22 @@
   <div class="row">
     <div class="col-md-4">
      <h1><%= @product.name %></h1>
-      <h3><%= @product.description %></h3>
-      <h4 class="<%= @product.discounted? %>"><%= @product.sale_method %> <br>
-      Price: <%= number_to_currency(@product.price) %></h4>
-      <h4>Tax: <%= number_to_currency(@product.tax) %>  &nbsp&nbsp  Total: <%= number_to_currency(@product.total) %></h4>
+     <h3><%= @product.description %></h3>
+     <p>&nbsp</p>
+      <% if @product.discounted? %> 
+        <h4 class="discount-item">Discount Item!! <br>
+        Price: <%= number_to_currency(@product.price) %></h4>
+      <% else %>
+        <h4>Everyday Value! <br>
+        Price: <%= number_to_currency(@product.price) %></h4>
+      <% end %>
+      
+
+      <p>Tax: <%= number_to_currency(@product.tax) %>  &nbsp&nbsp  Total: <%= number_to_currency(@product.total) %></p>
+      <p>&nbsp</p>
       <p>
         <% if @product.in_stock? == false %>Out of Stock<% end %>
       </p>
-      <p>&nbsp</p>
       <p> <a href="/products" class="btn btn-primary  btn-lg" role="button">All Products</a></p>
       <p><a href="/products/<%= @product.id %>/edit" class="btn btn-default" role="button">Edit Product</a>
       </p>
