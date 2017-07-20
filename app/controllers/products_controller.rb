@@ -17,23 +17,29 @@ class ProductsController < ApplicationController
 
     if sort_attribute && sort_order
       @products = @products.order(sort_attribute => sort_order)
+    else
+      @products = @products.order(:name)
     end 
 
     render "index.html.erb"
   end
 
   def new
+    @suppliers = Supplier.all.order(:name)
     render "new.html.erb"
   end
 
   def create
-    @product = Product.new(
+    @product = Product.create(
       name: params[:name],
       price: params[:price],
       description: params[:description],
       quantity: params[:quantity]
       )
-    @product.save
+    Image.create(
+      url: params[:image],
+      product_id: @product.id
+      )
     flash[:success] = "New Product #{@product.name} Successfully Created!"
     redirect_to "/products/#{@product.id}"
   end
@@ -49,6 +55,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find_by(id: params[:id])
+    @suppliers = Supplier.all.order(:name)
     render "edit.html.erb"
   end
 
@@ -58,8 +65,9 @@ class ProductsController < ApplicationController
     @product.price = params[:price]
     @product.description = params[:description]
     @product.quantity = params[:quantity]
+    @product.supplier_id = params[:supplier_id]
     @product.save
-    flash[:success] = "Product #{@product.name} Successfully Updated!"
+    flash[:success] = "#{@product.name} Successfully Updated!"
     redirect_to "/products/#{@product.id}"
   end
 

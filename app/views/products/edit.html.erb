@@ -20,10 +20,19 @@
           <label>Quantity: </label>
           <input type="text" name="quantity" class="form-control" placeholder="Quantity" value="<%= @product.quantity%>">
         </div>
+
         <div class="form-group">
-          <label>Supplier ID: </label>
-          <input type="text" name="supplier_id" class="form-control" placeholder="Supplier ID" value="<%= @product.supplier_id%>">
+          <label>Supplier</label>
+          <select name="supplier_id"  class="form-control">
+            <option value="<%= @product.supplier_id%>"> <%= @product.supplier.name %></option>
+            <% @suppliers.each do |supplier| %>
+              <% if supplier.id != @product.supplier_id %>
+                <option value="<%= supplier.id %>"><%= supplier.name %></option>
+              <% end %>
+            <% end %>
+          </select>
         </div>
+
         <div class="form-group">
 
           <!-- Update Button -->
