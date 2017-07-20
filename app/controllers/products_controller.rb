@@ -29,7 +29,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(
       name: params[:name],
-      image: params[:image],
       price: params[:price],
       description: params[:description],
       quantity: params[:quantity]
@@ -56,7 +55,6 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find_by(id: params[:id])
     @product.name = params[:name]
-    @product.image = params[:image]
     @product.price = params[:price]
     @product.description = params[:description]
     @product.quantity = params[:quantity]
