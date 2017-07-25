@@ -19,10 +19,27 @@
       <h4>
         <% if @product.in_stock? == false %>Out of Stock<% end %>
       </h4>
+
+      <%= form_tag "/orders", method: :post do %>
+        <input type="hidden" name="product_id" class="form-control" value="<%= @product.id %>">
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="text" name="quantity" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <input type="submit" value="Buy Now!" class="btn btn-primary">
+        </div>
+      <% end %>
+
+      <p>&nbsp</p>
+      <p>&nbsp</p>
       <p> <a href="/products" class="btn btn-primary  btn-lg" role="button">All Products</a></p>
       <p><a href="/products/<%= @product.id %>/edit" class="btn btn-default" role="button">Edit Product</a>
       </p>
     </div>
+
+
     <div class="col-md-8">
       <% @product.images.each do |image| %>
        <img src="<%= image.url %>" class="img-responsive">
