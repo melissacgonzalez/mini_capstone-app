@@ -6,11 +6,7 @@ class OrdersController < ApplicationController
       quantity: params[:quantity],
       product_id: params[:product_id]
       )
-    
-    order.subtotal = product.price * order.quantity
-    order.tax = (order.quantity * product.tax).round(2)
-    order.total = order.tax + order.subtotal
-
+    order.sub_tax_total
     order.save
     redirect_to "/orders/#{order.id}"
   end

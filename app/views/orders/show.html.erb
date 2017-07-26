@@ -1,10 +1,31 @@
-<h1>Order Confirmation</h1>
-<h3>Order ID: <%= @order.id %></h3>
-<h3>Quantity: <%= @order.quantity %></h3>
-<h3>Subtotal: $<%= @order.subtotal %></h3>
-<h3>Tax: $<%= @order.tax %></h3>
-<h3>Total: $<%= @order.total %></h3>
-<h3>Email: <%= @order.user.email %></h3>
-<h3><%= @order.product.name %></h3>
-<img src="<%= @order.product.images.first.url %>">
-<h3>Purchased: <%= @order.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h3>
+<div class="well">
+  <h1>Order Confirmation</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h2><%= @order.product.name %></h2>
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Order ID: <%= @order.id %></h4>
+            <h4>Quantity: <%= @order.quantity %></h4> 
+          </div>
+          <div class="col-md-6">
+            <h4>Subtotal: <%= number_to_currency(@order.subtotal) %></h4>
+            <h4>Tax: <%= number_to_currency(@order.tax) %></h4>
+            <h4>Total: <%= number_to_currency(@order.total) %></h4> 
+          </div>
+        </div>
+
+      <p>&nbsp</p>
+      <h4>Email: <%= @order.user.email %></h4>
+      <h4>Purchased: <%= @order.created_at.strftime("%A, %B %d, %Y at %l:%M %P %Z") %></h4>
+      
+    </div>
+    <div class="col-md-6"><img src="<%= @order.product.images.first.url %>"></div>
+
+  </div>
+
+
+</div>
+
+
+
