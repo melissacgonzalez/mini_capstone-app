@@ -4,6 +4,16 @@
      <h1><%= @product.name %></h1>
      <h3><%= @product.description %></h3>
      <h4>Made by <%= @product.supplier.name %></h4>
+     <h4>Categories:</h4>
+      <ul>
+        <% @product.categories.each do |category| %>
+          <li><%= category.name%></li>
+        <% end %>
+      </ul>
+      
+        
+      
+
      <p>&nbsp</p>
       <% if @product.discounted? %> 
         <h4 class="discount-item">Discount Item!! <br>

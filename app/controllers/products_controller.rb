@@ -5,12 +5,16 @@ class ProductsController < ApplicationController
     discounted = params[:discounted]
 
     search = params[:search_input]
+    category = params[:category]
     
     if search
       @products = Product.where("name ILIKE ? OR description ILIKE ?", 
       "%#{search}%", "%#{search}%")
     elsif discounted
       @products = Product.where("cast(price as text) LIKE ?", "%.97")
+    elsif category
+      category = Category.find_by(name: params[:category])
+      @products = category.products
     else
       @products = Product.all
     end
