@@ -1,14 +1,25 @@
 <div class="well">
   <h1>Order Confirmation</h1>
   <div class="row">
-    <div class="col-md-6">
-      <h2><%= @order.product.name %></h2>
+    <div class="col-md-12">
+      <h4>Order ID: <%= @order.id %></h4>
+      <h2></h2>
+        
+        <% @order.carted_products.each do |carted_product| %>
         <div class="row">
-          <div class="col-md-6">
-            <h4>Order ID: <%= @order.id %></h4>
-            <h4>Quantity: <%= @order.quantity %></h4> 
+          <div class="col-md-3">
+            <h3><%= carted_product.product.name %></h3>  
           </div>
-          <div class="col-md-6">
+          <div class="col-md-2">
+            <h3>Quantity: <%= carted_product.quantity %></h3> 
+          </div>
+          <div class="col-md-3">
+            <h3>Price: <%= carted_product.product.price %></h3> 
+          </div>
+        </div>
+        <% end %>
+        <div class="row">
+          <div class="col-md-12">
             <h4>Subtotal: <%= number_to_currency(@order.subtotal) %></h4>
             <h4>Tax: <%= number_to_currency(@order.tax) %></h4>
             <h4>Total: <%= number_to_currency(@order.total) %></h4> 
@@ -19,13 +30,12 @@
       <h4>Email: <%= @order.user.email %></h4>
       <h4>Purchased: <%= @order.created_at.strftime("%A, %B %d, %Y at %l:%M %P %Z") %></h4>
       
-    </div>
-    <div class="col-md-6"><img src="<%= @order.product.images.first.url %>"></div>
+    </div><!--col-->
 
-  </div>
+  </div><!--row-->
 
 
-</div>
+</div><!--well-->
 
 
 

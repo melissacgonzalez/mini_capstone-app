@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   patch "/suppliers/:id" => "suppliers#update"
   delete "/suppliers/:id" => "suppliers#destroy"
 
+  get "/checkout" => "carted_products#index"
+  post "/carted_products" => "carted_products#create"
+  delete "/carted_products/:id" => "carted_products#destroy"
+
+
   post "/orders" => "orders#create"
   get "/orders/:id" => "orders#show"
 

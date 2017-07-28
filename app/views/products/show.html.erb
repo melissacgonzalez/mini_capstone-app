@@ -4,15 +4,14 @@
      <h1><%= @product.name %></h1>
      <h3><%= @product.description %></h3>
      <h4>Made by <%= @product.supplier.name %></h4>
+
      <h4>Categories:</h4>
       <ul>
         <% @product.categories.each do |category| %>
-          <li><%= category.name%></li>
+          <li><a href="/products?category=<%= category.name %>"><%= category.name %></a></li>
         <% end %>
       </ul>
-      
-        
-      
+
 
      <p>&nbsp</p>
       <% if @product.discounted? %> 
@@ -30,7 +29,7 @@
         <% if @product.in_stock? == false %>Out of Stock<% end %>
       </h4>
 
-      <%= form_tag "/orders", method: :post do %>
+      <%= form_tag "/carted_products", method: :post do %>
         <input type="hidden" name="product_id" class="form-control" value="<%= @product.id %>">
         <div class="form-group">
           <label>Quantity</label>
@@ -38,7 +37,7 @@
         </div>
         
         <div class="form-group">
-          <input type="submit" value="Buy Now!" class="btn btn-primary">
+          <input type="submit" value="Add to Cart" class="btn btn-primary">
         </div>
       <% end %>
 
