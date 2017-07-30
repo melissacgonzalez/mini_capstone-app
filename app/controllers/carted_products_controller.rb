@@ -1,6 +1,8 @@
 class CartedProductsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
-    @carted_products = current_user.carted_products.where("status = ?", "carted")
+    @carted_products = current_user.carted_products.where(status: "carted")
     @subtotal = @carted_products.map{
       |carted_product| carted_product.subtotal}.reduce(0){|sum, price| sum + price}
     @tax = @carted_products.map{
@@ -26,9 +28,9 @@ class CartedProductsController < ApplicationController
 
   def destroy
     carted_product = CartedProduct.find_by(id: params[:id])
-    flash[:warning] = "Product Successfully Removed!"
     carted_product.status = "removed"
     carted_product.save
-    redirect_to "/"
+    flash[:warning] = "Product Successfully Removed!"
+    redirect_to "/checkout"
   end
 end
