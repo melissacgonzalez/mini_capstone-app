@@ -1,23 +1,38 @@
 <h1>Shopping Cart</h1>
 <% @carted_products.each do |carted_product| %>
-  <div class="row">
-    <div class="col-md-3"><h3><%= carted_product.product.name %></h3></div>
-    <div class="col-md-3"><h3>Quantity: <%= carted_product.quantity %></h3></div>
+  <div class="row well">
+    <div class="col-md-4"><h2><%= carted_product.product.name %></h2></div>
+    <div class="col-md-1"><h4>Price:</h4> <p><%= number_to_currency(carted_product.product.price) %></p></div>
+    <div class="col-md-1"><h4>Qty:</h4> <p><%= carted_product.quantity %></p></div>
+    <div class="col-md-1"><h4>Subtotal:</h4> <p><%= number_to_currency(carted_product.subtotal) %></p></div>
+    <div class="col-md-1"><h4>Tax:</h4> <p><%= number_to_currency(carted_product.tax) %></p></div>
+    <div class="col-md-1"><h4>Total:</h4> <p><%= number_to_currency(carted_product.total) %></p></div>
     <div class="col-md-3">
-      <%= form_tag "/carted_products/#{carted_product.id}", method: :delete do %>
-        <input type="submit" value="Remove Item from Cart" class="btn btn-primary">
-      <% end %>
-
+      <div class="form-group"><%= form_tag "/carted_products/#{carted_product.id}", method: :delete do %>
+        <br><input type="submit" value="Remove Item from Cart" class="btn btn-primary btn-md">
+      <% end %></div>
     </div>
   </div>
-  
-  
-
 <% end %>
 
 
-<%= form_tag "/orders", method: :post do %>  
-  <div class="form-group">
-    <input type="submit" value="Buy Now" class="btn btn-primary btn-lg">
+
+<div class="row">
+  <div class="col-md-3"><h2>Order Details:</h2></div>
+  <div class="col-md-1"><br><h4>Subtotal: <%= number_to_currency(@subtotal) %></h4></div>
+  <div class="col-md-1"><br><h4>Tax: <br><%= number_to_currency(@tax) %></h4></div>
+  <div class="col-md-2"><h3>Total: <br><%= number_to_currency(@total) %></h3></div>
+  <div class="col-md-5"><br>
+    <%= form_tag "/orders", method: :post do %>  
+      <div class="form-group">
+        <input type="submit" value="Buy Now" class="btn btn-primary btn-lg">
+      </div>
+    <% end %>
   </div>
-<% end %>
+
+</div>
+
+
+
+
+
